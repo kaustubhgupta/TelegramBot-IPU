@@ -1,0 +1,5 @@
+# Pycharms files not needed
+.idea
+
+# pycache not needed
+__pycache__
