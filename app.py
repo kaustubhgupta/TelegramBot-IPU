@@ -1,13 +1,19 @@
 from telebot import TelegramBot
+from ipuAPI import IPUApi
+import json
+import requests
+
 
 update_id = None
 bot = TelegramBot(config='config.cfg')
+api = IPUApi()
 
 
 def give_results(msg):
     if msg is not None:
-        marks = 'okay'
-        return marks
+        ans = api.getMarks(enrollNum=msg)
+        print(ans)
+        return ans
 
 
 while True:
