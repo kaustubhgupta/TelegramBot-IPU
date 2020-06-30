@@ -19,7 +19,7 @@ class TelegramBot:
         return json.loads(r.content)
 
     def send_message(self, msg, chat_id):
-        url = self.base + "sendMessage?chat_id={}&text={}".format(chat_id, msg)
+        url = self.base + 'sendMessage?chat_id={}&text={}&parse_mode=Markdown'.format(chat_id, msg)
         if msg is not None:
             requests.get(url)
 
