@@ -5,6 +5,7 @@ import json
 class IPUApi:
 
     def __init__(self):
+        #self.baseurl = "http://127.0.0.1:5000/"
         self.baseurl = "https://ipuresultskg.herokuapp.com/"
 
     def getMarks(self, enrollNum, batch, semester):
