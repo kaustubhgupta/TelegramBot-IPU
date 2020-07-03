@@ -4,8 +4,6 @@ from credentials import bot_token, URL
 from ipuAPI import IPUApi
 
 api = IPUApi()
-global bot
-global TOKEN
 TOKEN = bot_token
 bot = telegram.Bot(token=TOKEN)
 
