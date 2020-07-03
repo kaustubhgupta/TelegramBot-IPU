@@ -1,7 +1,5 @@
 from telebot import TelegramBot
 from ipuAPI import IPUApi
-import os
-port = int(os.environ.get('PORT', 8443))
 
 update_id = None
 bot = TelegramBot(config='config.cfg')
