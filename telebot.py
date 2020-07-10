@@ -28,3 +28,6 @@ class TelegramBot:
         parser.read(config)
         return parser.get('creds', 'token')
 
+    def send_action(self, chat_id):
+        url = self.base + 'sendChatAction?chat_id={}&action=TYPING'.format(chat_id)
+        requests.get(url)

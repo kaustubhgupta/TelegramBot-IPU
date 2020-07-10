@@ -41,6 +41,7 @@ while True:
                     message = None
                 sender = i['message']['from']['id']
                 reply = give_results(message)
+                bot.send_action(chat_id=sender)
                 bot.send_message(msg=reply, chat_id=sender)
     except:
         print('Getting No updates!')
