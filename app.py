@@ -2,7 +2,7 @@ from telebot import TelegramBot
 from ipuAPI import IPUApi
 
 update_id = None
-bot = TelegramBot(config='config.cfg')
+bot = TelegramBot()
 api = IPUApi()
 
 

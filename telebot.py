@@ -6,7 +6,7 @@ import os
 
 class TelegramBot:
 
-    def __init__(self, config):
+    def __init__(self):
         self.token = os.environ.get('authkey')
         self.base = "https://api.telegram.org/bot{}/".format(self.token)
 
