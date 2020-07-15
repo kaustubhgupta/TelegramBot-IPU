@@ -19,7 +19,8 @@ def give_results(msg):
             if len(msg) != 3:
                 return "*Error! Possible Reasons:*\n1. Wrong enrollment number or combination selected\n2. Result not available in our database"
             else:
-                ans = api.getMarks(enrollNum=msg[0], batch=msg[1], semester=msg[2])
+                tok = api.token()['token']
+                ans = api.getMarks(enrollNum=msg[0], batch=msg[1], semester=msg[2], token=tok)
                 if ans is not None:
                     marks = ' '.join([' '.join(i)+str('\n') for i in [[j.strip() for j in i.split('  ') if j != ''] for i in ans[0].split('\n')[1:]]])
                     to_send = "*MARKS SUMMARY Semester-*" + str(msg[2]) + str('\n') + "Name: " + str(ans[4]) + str('\n') + "Enrollment Number: " + str(ans[5]) + str('\n') + "College: " + str(ans[1]) + str('\n') + str("Branch: ") + str(ans[2]) + str('\n') + "Percentage: " + str(ans[10]) + str('%\n') + "College Rank :{}/{}".format(ans[6], ans[7]) + str('\n') + "University Rank :{}/{}\n".format(ans[8], ans[9]) + '\nMarks Format\n*Subject  Internal  External  Total*\n\n\n' + marks
