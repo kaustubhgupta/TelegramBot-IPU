@@ -1,6 +1,5 @@
 import requests
 import json
-from boto.s3.connection import S3Connection
 import os
 
 
@@ -17,7 +16,7 @@ class IPUApi:
         if self.local:
             url = self.baseurl + 'getToken'
         else:
-            url = self.baseurl + 'getToken?key={}'.format(S3Connection(os.environ['Service']))
+            url = self.baseurl + 'getToken?key={}'.format(os.environ.get('Service'))
         r = requests.get(url)
         return json.loads(r.content)
 
