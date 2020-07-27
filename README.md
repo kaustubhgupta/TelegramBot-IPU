@@ -1,3 +1,4 @@
+![demo](demo/demo.gif)
 # TelegramBot-IPU
 Try the bot [here](https://t.me/ipuBOT).
 This is the extension to my IPU results website. This app fetches data from the website's own REST API and then processes the jsonified output of the API to be sent to the telegram bot via the Telegram's own webhook. Currently, its deployed to Heroku as worker dyno which almost works 24/7.
