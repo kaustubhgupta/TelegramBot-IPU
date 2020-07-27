@@ -8,3 +8,6 @@ When a message is sent by a user to the Telegram bot, a post request is made to 
 
 ## How result data is fetched?
 Whenever my bot receives a post request for a enrollment number, firstly it is validated in the application and then the API call is made to my website. I created a REST API in my website to handle these get requests. The data received by the API is then processed to be sent to the user.
+
+## Note:
+*Currently the telegram bot is on maintenance mode as I have consumed whole free dynos on Heroku this month. I am trying to migrate it to better deployment serivce so that it is available 24x7 :-)*
