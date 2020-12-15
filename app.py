@@ -4,7 +4,6 @@ import requests
 import pandas as pd
 from time import sleep
 from flask import Flask, request
-from telegram import ParseMode
 
 app = Flask(__name__)
 
@@ -61,7 +60,7 @@ def webhook():
                     bot.sendMessage(chat_id=chat_id, text=to_send)
                     df = pd.DataFrame(marks, columns=['Subjects', 'Internals', 'Externals', 'Total', 'Grade Points'])
                     marksData = df.to_markdown()
-                    bot.sendMessage(chat_id=chat_id, text=marksData, parse_mode=ParseMode.MarkdownV2)
+                    bot.sendMessage(chat_id=chat_id, text=marksData, parse_mode='HTML')
                     return 'ok'
                 else:
                     send = "*Error! Possible Reasons:*\n1. Wrong enrollment number or combination selected\n2. Result not available in our database"
