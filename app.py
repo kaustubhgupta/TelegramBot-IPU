@@ -60,7 +60,7 @@ def webhook():
                                                                       data['result']['ext_marks'], data['result']['total_marks'], data['result']['grade_points'])]
                     bot.sendMessage(chat_id=chat_id, text=to_send)
                     df = pd.DataFrame(
-                        data, columns=['Subjects', 'Internals', 'Externals', 'Total', 'Grade Points'])
+                        marks, columns=['Subjects', 'Internals', 'Externals', 'Total', 'Grade Points'])
                     df_styled = df.style.background_gradient()
                     path = os.path.join('temp/' + f'{chat_id}.png')
                     dfi.export(df_styled, path)
