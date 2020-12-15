@@ -1,6 +1,8 @@
 import os
 import telegram
 import requests
+import pandas as pd
+import dataframe_image as dfi
 from time import sleep
 from flask import Flask, request
 
@@ -55,9 +57,15 @@ def webhook():
                         "Branch: ") + str(data['result']['branch_name']) + str('\n') + "Percentage: " + str(data['result']['percentage']) + str(
                         '%\n') + "SGPA: " + str(data['result']['sgpa']) + str('\n') + "College Overall Rank :{}/{}".format(data['result']['ranks']['college_rank'], data['result']['ranks']['college_total']) + str('\n') + "College Branch Rank :{}/{}".format(data['result']['ranks']['college_branch_rank'], data['result']['ranks']['college_branch_total']) + str('\n') + "University Rank :{}/{}".format(data['result']['ranks']['uni_rank'], data['result']['ranks']['uni_total']) + str('\n') + "University Branch Rank :{}/{}".format(data['result']['ranks']['uni_branch_rank'], data['result']['ranks']['uni_branch_total'])
                     marks = [(i, j, k, z, t) for i, j, k, z, t in zip(data['result']['subjects'], data['result']['int_marks'],
-                                                              data['result']['ext_marks'], data['result']['total_marks'], data['result']['grade_points'])]
+                                                                      data['result']['ext_marks'], data['result']['total_marks'], data['result']['grade_points'])]
                     bot.sendMessage(chat_id=chat_id, text=to_send)
-                    bot.sendMessage(chat_id=chat_id, text=marks)
+                    df = pd.DataFrame(
+                        data, columns=['Subjects', 'Internals', 'Externals', 'Total', 'Grade Points'])
+                    df_styled = df.style.background_gradient()
+                    path = os.path.join('temp/' + f'{chat_id}.png')
+                    dfi.export(df_styled, path)
+                    bot.send_photo(chat_id=chat_id, photo=open(path, 'rb'))
+                    os.remove(path)
                     return 'ok'
                 else:
                     send = "*Error! Possible Reasons:*\n1. Wrong enrollment number or combination selected\n2. Result not available in our database"
