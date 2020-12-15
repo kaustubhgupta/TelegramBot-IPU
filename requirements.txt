@@ -3,3 +3,4 @@ gunicorn
 python-telegram-bot
 requests
 pandas
+tabulate
