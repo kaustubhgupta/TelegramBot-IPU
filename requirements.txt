@@ -3,4 +3,3 @@ gunicorn
 python-telegram-bot
 requests
 pandas
-dataframe_image

@@ -2,9 +2,9 @@ import os
 import telegram
 import requests
 import pandas as pd
-import dataframe_image as dfi
 from time import sleep
 from flask import Flask, request
+from telegram import ParseMode
 
 app = Flask(__name__)
 
@@ -59,13 +59,9 @@ def webhook():
                     marks = [(i, j, k, z, t) for i, j, k, z, t in zip(data['result']['subjects'], data['result']['int_marks'],
                                                                       data['result']['ext_marks'], data['result']['total_marks'], data['result']['grade_points'])]
                     bot.sendMessage(chat_id=chat_id, text=to_send)
-                    df = pd.DataFrame(
-                        marks, columns=['Subjects', 'Internals', 'Externals', 'Total', 'Grade Points'])
-                    df_styled = df.style.background_gradient()
-                    path = os.path.join('temp/' + f'{chat_id}.png')
-                    dfi.export(df_styled, path)
-                    bot.send_photo(chat_id=chat_id, photo=open(path, 'rb'))
-                    os.remove(path)
+                    df = pd.DataFrame(marks, columns=['Subjects', 'Internals', 'Externals', 'Total', 'Grade Points'])
+                    marksData = df.to_markdown()
+                    bot.sendMessage(chat_id=chat_id, text=marksData, parse_mode=ParseMode.MarkdownV2)
                     return 'ok'
                 else:
                     send = "*Error! Possible Reasons:*\n1. Wrong enrollment number or combination selected\n2. Result not available in our database"
