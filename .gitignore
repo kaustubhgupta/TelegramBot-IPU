@@ -3,3 +3,7 @@
 
 # pycache not needed
 __pycache__
+
+.vscode
+
+.env
