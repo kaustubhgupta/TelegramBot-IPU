@@ -1,6 +1,7 @@
 import os
 import telegram
 import requests
+from time import sleep
 from flask import Flask, request
 
 app = Flask(__name__)
@@ -16,13 +17,17 @@ def webhook():
         if text == '/start':
             message = '*Welcome to IPU Results Checker Portal!*' + '\n\nTo get your results, input the query as following format:\n*EnrollmentNumber  BatchNumber  Semester*\n' + \
                 'For example,\n12345678910 18 2\nIt would give results for 2018-2022 batch 2nd semester results'
-            bot.sendMessage(chat_id=chat_id, text=message, action="typing")
+            bot.sendChatAction(chat_id=chat_id, action="typing")
+            sleep(1)
+            bot.sendMessage(chat_id=chat_id, text=message)
             return 'ok'
 
         elif len(text) != 16:
             message = '*Input given in wrong format!*' + \
                 "\nYou need to input as:\n*EnrollmentNumber BatchNumber Semester*"
-            bot.sendMessage(chat_id=chat_id, text=message, action="typing")
+            bot.sendChatAction(chat_id=chat_id, action="typing")
+            sleep(1)
+            bot.sendMessage(chat_id=chat_id, text=message)
             return 'ok'
 
         else:
@@ -30,7 +35,9 @@ def webhook():
             if len(msg) != 3:
                 message = '*Input given in wrong format!*' + \
                     "\nYou need to input as:\n*EnrollmentNumber BatchNumber Semester*"
-                bot.sendMessage(chat_id=chat_id, text=message, action="typing")
+                bot.sendChatAction(chat_id=chat_id, action="typing")
+                sleep(1)
+                bot.sendMessage(chat_id=chat_id, text=message)
                 return 'ok'
             else:
                 url = "https://ipubackendapi.herokuapp.com/score?eNumber={}&semester={}&batch={}".format(
@@ -41,11 +48,15 @@ def webhook():
                 received = requests.request("GET", url, headers=headers)
                 data = received.json()
                 if data['result'] is not None:
-                    bot.sendMessage(chat_id=chat_id, text=data, action="typing")
+                    bot.sendChatAction(chat_id=chat_id, action="typing")
+                    sleep(1)
+                    bot.sendMessage(chat_id=chat_id, text=data)
                     return 'ok'
                 else:
                     send = "*Error! Possible Reasons:*\n1. Wrong enrollment number or combination selected\n2. Result not available in our database"
-                    bot.sendMessage(chat_id=chat_id, text=send, action="typing")
+                    bot.sendChatAction(chat_id=chat_id, action="typing")
+                    sleep(1)
+                    bot.sendMessage(chat_id=chat_id, text=send)
                     return 'ok'
 
     return 'error'
