@@ -50,7 +50,14 @@ def webhook():
                 if data['result'] is not None:
                     bot.sendChatAction(chat_id=chat_id, action="typing")
                     sleep(1)
-                    bot.sendMessage(chat_id=chat_id, text=data)
+                    to_send = "Semester-{}".format(msg[2]) + str('\n') + "Name: " + str(data['result']['name']) + str(
+                        '\n') + "Enrollment Number: " + str(data['result']['enroll_num']) + str('\n') + "College: " + str(data['result']['college_name']) + str('\n') + str(
+                        "Branch: ") + str(data['result']['branch_name']) + str('\n') + "Percentage: " + str(data['result']['percentage']) + str(
+                        '%\n') + "SGPA: " + str(data['result']['sgpa']) + str('\n') + "College Overall Rank :{}/{}".format(data['result']['ranks']['college_rank'], data['result']['ranks']['college_total']) + str('\n') + "College Branch Rank :{}/{}".format(data['result']['ranks']['college_branch_rank'], data['result']['ranks']['college_branch_total']) + str('\n') + "University Rank :{}/{}".format(data['result']['ranks']['uni_rank'], data['result']['ranks']['uni_total']) + str('\n') + "University Branch Rank :{}/{}".format(data['result']['ranks']['uni_branch_rank'], data['result']['ranks']['uni_branch_total'])
+                    marks = [(i, j, k, z, t) for i, j, k, z, t in zip(data['result']['subjects'], data['result']['int_marks'],
+                                                              data['result']['ext_marks'], data['result']['total_marks'], data['result']['grade_points'])]
+                    bot.sendMessage(chat_id=chat_id, text=to_send)
+                    bot.sendMessage(chat_id=chat_id, text=marks)
                     return 'ok'
                 else:
                     send = "*Error! Possible Reasons:*\n1. Wrong enrollment number or combination selected\n2. Result not available in our database"
