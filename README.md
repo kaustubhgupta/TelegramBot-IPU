@@ -1,4 +1,7 @@
 # TelegramBot-IPU
+
+![TelegramBot-IPU](https://socialify.git.ci/kaustubhgupta/TelegramBot-IPU/image?language=1&theme=Light&stargazers=1&description=1&pulls=1&issues=1&forks=1&owner=1)
+
 ![demo](demo/demo.gif)
 Try the bot [here](https://t.me/ipuBOT).
 This bot receives the user inputs via webhook, makes backed API, and then processes it to be sent to the user. Currently, it's deployed to Heroku and wrapped in Flask which almost works 24/7.
