@@ -41,7 +41,7 @@ def webhook():
                 bot.sendMessage(chat_id=chat_id, text=message)
                 return 'ok'
             else:
-                url = "https://ipuresultskg.herokuapp.com/api/v1/score?eNumber={}&semester={}&batch={}".format(
+                url = "https://ipuresultskg.herokuapp.com/api/v1/fetchscore?eNumber={}&semester={}&batch={}".format(
                     msg[0], msg[2], msg[1])
                 headers = {
                     'Authorization': 'Bearer {}'.format(os.environ['IPU_API_KEY'])
