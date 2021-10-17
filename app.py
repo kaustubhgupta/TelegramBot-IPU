@@ -79,7 +79,7 @@ def webhook():
                     return 'ok'
                 else:
                     send = "<b>Error! Possible Reasons:</b>\n\n1. Wrong enrollment number or combination selected\n2. Result not available in our database"
-                    bot.sendChatAction(chat_id=chat_id, action="typing")
+                    bot.sendChatAction(chat_id=chat_id, action="typing", parse_mode="HTML")
                     sleep(0.6)
                     bot.sendMessage(chat_id=chat_id, text=send)
                     return 'ok'
