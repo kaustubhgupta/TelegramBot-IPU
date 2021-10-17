@@ -2,5 +2,5 @@ flask
 gunicorn
 python-telegram-bot
 requests
-pandas
-tabulate
+numpy
+matplotlib
