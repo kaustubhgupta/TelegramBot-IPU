@@ -11,5 +11,5 @@ When a message is sent by a user to the Telegram bot, a post request is made to 
 ## Bot Link ⚡
 Try the bot [here](https://telegram.me/ipuBOT)
 
-## Preview (As of Oct 17. 2021) 📺
+## Preview (As of Oct 17 2021) 📺
 ![demo](demo/demo.gif)
